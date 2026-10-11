@@ -1,6 +1,7 @@
 button {
-  min-height: 44px; border: 1px solid transparent; border-radius: var(--radius);
+  min-width: 0; max-width: 100%; min-height: 44px; border: 1px solid transparent; border-radius: var(--radius);
   padding: 10px 16px; background: transparent; color: var(--ink); line-height: 22px;
+  overflow-wrap: anywhere;
   transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, opacity 200ms ease;
 }
 button:active { transition: none; }
@@ -29,7 +30,7 @@ input:focus-visible, textarea:focus-visible, .select-trigger:focus-visible {
   border-color: var(--accent); outline: 2px solid #ded9ff; outline-offset: 1px;
 }
 input:disabled, textarea:disabled { color: var(--muted); background: var(--surface-muted); }
-input::placeholder, textarea::placeholder { color: #81828b; opacity: 1; }
+input::placeholder, textarea::placeholder { color: var(--muted); opacity: 1; }
 textarea { height: auto; min-height: 100px; resize: vertical; }
 .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .full { grid-column: 1 / -1; }
@@ -52,7 +53,7 @@ input[type=checkbox], input[type=radio] { width: 18px; height: 18px; margin: 2px
 }
 .select-menu::backdrop { background: transparent; }
 .select-option {
-  min-height: 40px; display: flex; align-items: center; gap: 12px; padding: 9px 12px;
+  min-height: 44px; display: flex; align-items: center; gap: 12px; padding: 10px 12px;
   border-radius: 4px; cursor: pointer; line-height: 22px; overflow-wrap: normal;
 }
 .select-option[data-active=true] { background: var(--surface-accent); color: var(--accent); }
@@ -66,4 +67,4 @@ input[type=checkbox], input[type=radio] { width: 18px; height: 18px; margin: 2px
   .form-actions > button, .invitation-actions > button { flex: 1 1 180px; }
 }
 
-.option-label { min-width: 0; flex: 1; }
+.option-label { min-width: 0; flex: 1; overflow-wrap: anywhere; }

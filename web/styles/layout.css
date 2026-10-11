@@ -54,8 +54,8 @@
 #verify-area { display: grid; gap: 16px; margin-top: 24px; }
 @media (max-width: 1100px) {
   .sidebar { flex-wrap: wrap; padding: 24px 0 0; gap: 16px; }
-  .nav { width: 100%; margin: 0; }
-  .nav button { flex: 1; }
+  .nav { width: 100%; margin: 0; align-items: stretch; }
+  .nav button { flex: 1; white-space: normal; }
   .landing-art, .landing-form { padding: 32px; }
 }
 @media (max-width: 800px) {

@@ -27,8 +27,8 @@
 .candidate-table th:first-child, .candidate-table td:first-child { padding-left: 24px; }
 .candidate-table th:last-child, .candidate-table td:last-child { padding-right: 24px; }
 .person { display: flex; gap: 12px; align-items: center; min-width: 170px; }
-.person > div:last-child { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-.name-link { padding: 0; min-height: 24px; text-align: left; color: var(--accent); }
+.person > div:last-child { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; }
+.name-link { padding: 0; min-height: 44px; text-align: left; color: var(--accent); }
 .name-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 .grade-chip { color: var(--muted); font-size: 11px; }
 .verified-marker { color: #208451; display: inline-grid; place-items: center; width: 26px; height: 26px; background: #edf8f1; border-radius: 50%; }
@@ -39,13 +39,13 @@
 .match-segments { display: flex; gap: 3px; }
 .match-segments i { width: 10px; height: 20px; border-radius: 2px; background: #e9e7f0; }
 .match-segments .filled { background: var(--accent); }
-.row-actions button { white-space: nowrap; font-size: 12px; padding: 8px 12px; min-height: 40px; }
+.row-actions button { white-space: nowrap; font-size: 12px; padding: 8px 12px; min-width: 44px; min-height: 44px; }
 .pagination { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; border-top: 1px solid var(--border); font-size: 12px; }
 .pagination .field { display: flex; flex-direction: row; align-items: center; gap: 12px; }
 .pagination .select-control { width: 76px; }
-.pagination .select-trigger { height: 36px; min-height: 36px; padding: 6px 10px; gap: 8px; }
-.page-buttons { display: flex; align-items: center; gap: 6px; }
-.page-buttons button { min-width: 36px; height: 36px; min-height: 36px; padding: 6px 8px; }
+.pagination .select-trigger { height: 44px; min-height: 44px; padding: 10px; gap: 8px; }
+.page-buttons { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; max-width: 100%; }
+.page-buttons button { min-width: 44px; height: 44px; min-height: 44px; padding: 10px 8px; }
 .page-buttons button[aria-current=page] { color: var(--accent); border-color: var(--accent); background: var(--surface-accent); }
 @media (max-width: 1050px) {
   .row-actions button span { display: none; }
@@ -87,7 +87,8 @@
   .candidate-table td:nth-child(n + 3):nth-child(-n + 5)::before { margin: 0; }
   .candidate-table td[data-label="Соответствие"] { justify-content: flex-end; }
   .candidate-table .verified-marker { width: 24px; height: 24px; flex-shrink: 0; }
-  .candidate-table .match-visual { min-width: 0; min-height: 44px; padding: 8px 0; flex-shrink: 0; }
+  .candidate-table .match-visual { min-width: 44px; min-height: 44px; padding: 8px 0; flex-shrink: 0; }
+  .candidate-table .match-visual .match-segments { justify-content: flex-end; }
   .candidate-table .match-segments { gap: 2px; }
   .candidate-table .match-segments i { width: 5px; height: 16px; }
   .row-actions button { width: 100%; }
