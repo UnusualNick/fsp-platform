@@ -1,0 +1,1167 @@
+{
+  "dataset": "Synthetic fixture only",
+  "candidate_count": 36,
+  "query_count": 9,
+  "precision_at_1": 1,
+  "precision_at_3": 0.5555555555555556,
+  "forms_generated": 900,
+  "unique_forms": 900,
+  "ranking_benchmark": {
+    "profiles": 1008,
+    "runs": 100,
+    "p50_ms": 0.398,
+    "p95_ms": 0.461,
+    "scope": "In-process only. Not an HTTP load test."
+  },
+  "queries": [
+    {
+      "specialization": "backend",
+      "grade": "Junior",
+      "skills": "Python, PostgreSQL",
+      "relevant_ids": [
+        2
+      ],
+      "top3": [
+        2,
+        4,
+        3
+      ],
+      "precision_at_1": 1,
+      "precision_at_3": 0.3333333333333333
+    },
+    {
+      "specialization": "backend",
+      "grade": "Middle",
+      "skills": "Python, PostgreSQL",
+      "relevant_ids": [
+        6
+      ],
+      "top3": [
+        6,
+        8,
+        7
+      ],
+      "precision_at_1": 1,
+      "precision_at_3": 0.3333333333333333
+    },
+    {
+      "specialization": "backend",
+      "grade": "Senior",
+      "skills": "Python, PostgreSQL",
+      "relevant_ids": [
+        10
+      ],
+      "top3": [
+        10,
+        12,
+        11
+      ],
+      "precision_at_1": 1,
+      "precision_at_3": 0.3333333333333333
+    },
+    {
+      "specialization": "frontend",
+      "grade": "Junior",
+      "skills": "TypeScript, React",
+      "relevant_ids": [
+        14,
+        16
+      ],
+      "top3": [
+        14,
+        16,
+        17
+      ],
+      "precision_at_1": 1,
+      "precision_at_3": 0.6666666666666666
+    },
+    {
+      "specialization": "frontend",
+      "grade": "Middle",
+      "skills": "TypeScript, React",
+      "relevant_ids": [
+        18,
+        20
+      ],
+      "top3": [
+        18,
+        20,
+        21
+      ],
+      "precision_at_1": 1,
+      "precision_at_3": 0.6666666666666666
+    },
+    {
+      "specialization": "frontend",
+      "grade": "Senior",
+      "skills": "TypeScript, React",
+      "relevant_ids": [
+        22,
+        24
+      ],
+      "top3": [
+        22,
+        24,
+        23
+      ],
+      "precision_at_1": 1,
+      "precision_at_3": 0.6666666666666666
+    },
+    {
+      "specialization": "data",
+      "grade": "Junior",
+      "skills": "Python, SQL",
+      "relevant_ids": [
+        26,
+        29
+      ],
+      "top3": [
+        26,
+        29,
+        28
+      ],
+      "precision_at_1": 1,
+      "precision_at_3": 0.6666666666666666
+    },
+    {
+      "specialization": "data",
+      "grade": "Middle",
+      "skills": "Python, SQL",
+      "relevant_ids": [
+        30,
+        33
+      ],
+      "top3": [
+        30,
+        33,
+        32
+      ],
+      "precision_at_1": 1,
+      "precision_at_3": 0.6666666666666666
+    },
+    {
+      "specialization": "data",
+      "grade": "Senior",
+      "skills": "Python, SQL",
+      "relevant_ids": [
+        34,
+        37
+      ],
+      "top3": [
+        34,
+        37,
+        36
+      ],
+      "precision_at_1": 1,
+      "precision_at_3": 0.6666666666666666
+    }
+  ],
+  "limitations": [
+    "No real candidates or expert grade labels.",
+    "Seed scores are scenario fixtures, not measured test results.",
+    "Form uniqueness does not prove resistance to cheating.",
+    "No claim of psychometric reliability, real hiring relevance or legal compliance."
+  ],
+  "assessment_validation": {
+    "method": "150 synthetic profiles per category, two independently generated forms; same assumed proficiency for both attempts. Confirmed grade equals claimed grade on pass, otherwise unconfirmed.",
+    "response_model": "P(correct)=0.25+0.74*i/149, identical across items; independent Bernoulli answers. Seed 20261011.",
+    "comparison": "Shared profile and attempt seeds; old form uses first six answers from the same draw stream. No threshold changes.",
+    "discrimination_method": "Upper 27% minus lower 27% correct rate, grouped by first-attempt score excluding the measured item.",
+    "categories": [
+      {
+        "specialization": "backend",
+        "claimed_grade": "Junior",
+        "profiles": 150,
+        "questions_per_attempt": 12,
+        "confirmed_grade_agreement": 0.8267,
+        "cohen_kappa": 0.6409,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.6,
+        "score_correlation": 0.7214,
+        "mean_absolute_score_change": 14.33,
+        "pass_rates": [
+          0.4133,
+          0.4
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.775
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.625
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.55
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 7,
+            "upper_minus_lower_correct_rate": 0.525
+          },
+          {
+            "position": 8,
+            "upper_minus_lower_correct_rate": 0.75
+          },
+          {
+            "position": 9,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 10,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 11,
+            "upper_minus_lower_correct_rate": 0.625
+          },
+          {
+            "position": 12,
+            "upper_minus_lower_correct_rate": 0.75
+          }
+        ]
+      },
+      {
+        "specialization": "backend",
+        "claimed_grade": "Middle",
+        "profiles": 150,
+        "questions_per_attempt": 12,
+        "confirmed_grade_agreement": 0.8267,
+        "cohen_kappa": 0.6322,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.5,
+        "score_correlation": 0.7996,
+        "mean_absolute_score_change": 11.83,
+        "pass_rates": [
+          0.3867,
+          0.3733
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.55
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.725
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 7,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 8,
+            "upper_minus_lower_correct_rate": 0.475
+          },
+          {
+            "position": 9,
+            "upper_minus_lower_correct_rate": 0.55
+          },
+          {
+            "position": 10,
+            "upper_minus_lower_correct_rate": 0.425
+          },
+          {
+            "position": 11,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 12,
+            "upper_minus_lower_correct_rate": 0.6
+          }
+        ]
+      },
+      {
+        "specialization": "backend",
+        "claimed_grade": "Senior",
+        "profiles": 150,
+        "questions_per_attempt": 12,
+        "confirmed_grade_agreement": 0.9,
+        "cohen_kappa": 0.6846,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.65,
+        "score_correlation": 0.7618,
+        "mean_absolute_score_change": 13.17,
+        "pass_rates": [
+          0.22,
+          0.1733
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.45
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.55
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.525
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.475
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.625
+          },
+          {
+            "position": 7,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 8,
+            "upper_minus_lower_correct_rate": 0.425
+          },
+          {
+            "position": 9,
+            "upper_minus_lower_correct_rate": 0.625
+          },
+          {
+            "position": 10,
+            "upper_minus_lower_correct_rate": 0.525
+          },
+          {
+            "position": 11,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 12,
+            "upper_minus_lower_correct_rate": 0.5
+          }
+        ]
+      },
+      {
+        "specialization": "frontend",
+        "claimed_grade": "Junior",
+        "profiles": 150,
+        "questions_per_attempt": 12,
+        "confirmed_grade_agreement": 0.8333,
+        "cohen_kappa": 0.6526,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.725,
+        "score_correlation": 0.7608,
+        "mean_absolute_score_change": 13.89,
+        "pass_rates": [
+          0.3733,
+          0.42
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.525
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.475
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.85
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.45
+          },
+          {
+            "position": 7,
+            "upper_minus_lower_correct_rate": 0.55
+          },
+          {
+            "position": 8,
+            "upper_minus_lower_correct_rate": 0.525
+          },
+          {
+            "position": 9,
+            "upper_minus_lower_correct_rate": 0.725
+          },
+          {
+            "position": 10,
+            "upper_minus_lower_correct_rate": 0.525
+          },
+          {
+            "position": 11,
+            "upper_minus_lower_correct_rate": 0.525
+          },
+          {
+            "position": 12,
+            "upper_minus_lower_correct_rate": 0.5
+          }
+        ]
+      },
+      {
+        "specialization": "frontend",
+        "claimed_grade": "Middle",
+        "profiles": 150,
+        "questions_per_attempt": 12,
+        "confirmed_grade_agreement": 0.8067,
+        "cohen_kappa": 0.5961,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.575,
+        "score_correlation": 0.7617,
+        "mean_absolute_score_change": 13.0,
+        "pass_rates": [
+          0.3933,
+          0.4
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 7,
+            "upper_minus_lower_correct_rate": 0.625
+          },
+          {
+            "position": 8,
+            "upper_minus_lower_correct_rate": 0.7
+          },
+          {
+            "position": 9,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 10,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 11,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 12,
+            "upper_minus_lower_correct_rate": 0.475
+          }
+        ]
+      },
+      {
+        "specialization": "frontend",
+        "claimed_grade": "Senior",
+        "profiles": 150,
+        "questions_per_attempt": 12,
+        "confirmed_grade_agreement": 0.8933,
+        "cohen_kappa": 0.6503,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.65,
+        "score_correlation": 0.7436,
+        "mean_absolute_score_change": 14.28,
+        "pass_rates": [
+          0.2133,
+          0.16
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.65
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.475
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.625
+          },
+          {
+            "position": 7,
+            "upper_minus_lower_correct_rate": 0.775
+          },
+          {
+            "position": 8,
+            "upper_minus_lower_correct_rate": 0.525
+          },
+          {
+            "position": 9,
+            "upper_minus_lower_correct_rate": 0.8
+          },
+          {
+            "position": 10,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 11,
+            "upper_minus_lower_correct_rate": 0.65
+          },
+          {
+            "position": 12,
+            "upper_minus_lower_correct_rate": 0.475
+          }
+        ]
+      },
+      {
+        "specialization": "data",
+        "claimed_grade": "Junior",
+        "profiles": 150,
+        "questions_per_attempt": 12,
+        "confirmed_grade_agreement": 0.86,
+        "cohen_kappa": 0.7039,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.65,
+        "score_correlation": 0.7607,
+        "mean_absolute_score_change": 14.0,
+        "pass_rates": [
+          0.3867,
+          0.38
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.65
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.75
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 7,
+            "upper_minus_lower_correct_rate": 0.7
+          },
+          {
+            "position": 8,
+            "upper_minus_lower_correct_rate": 0.8
+          },
+          {
+            "position": 9,
+            "upper_minus_lower_correct_rate": 0.7
+          },
+          {
+            "position": 10,
+            "upper_minus_lower_correct_rate": 0.65
+          },
+          {
+            "position": 11,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 12,
+            "upper_minus_lower_correct_rate": 0.7
+          }
+        ]
+      },
+      {
+        "specialization": "data",
+        "claimed_grade": "Middle",
+        "profiles": 150,
+        "questions_per_attempt": 12,
+        "confirmed_grade_agreement": 0.8133,
+        "cohen_kappa": 0.6114,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.625,
+        "score_correlation": 0.6922,
+        "mean_absolute_score_change": 15.0,
+        "pass_rates": [
+          0.4133,
+          0.3867
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.475
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.725
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.55
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.45
+          },
+          {
+            "position": 7,
+            "upper_minus_lower_correct_rate": 0.65
+          },
+          {
+            "position": 8,
+            "upper_minus_lower_correct_rate": 0.725
+          },
+          {
+            "position": 9,
+            "upper_minus_lower_correct_rate": 0.45
+          },
+          {
+            "position": 10,
+            "upper_minus_lower_correct_rate": 0.625
+          },
+          {
+            "position": 11,
+            "upper_minus_lower_correct_rate": 0.65
+          },
+          {
+            "position": 12,
+            "upper_minus_lower_correct_rate": 0.55
+          }
+        ]
+      },
+      {
+        "specialization": "data",
+        "claimed_grade": "Senior",
+        "profiles": 150,
+        "questions_per_attempt": 12,
+        "confirmed_grade_agreement": 0.8267,
+        "cohen_kappa": 0.413,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.475,
+        "score_correlation": 0.74,
+        "mean_absolute_score_change": 13.45,
+        "pass_rates": [
+          0.1867,
+          0.1733
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.475
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.55
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 7,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 8,
+            "upper_minus_lower_correct_rate": 0.375
+          },
+          {
+            "position": 9,
+            "upper_minus_lower_correct_rate": 0.55
+          },
+          {
+            "position": 10,
+            "upper_minus_lower_correct_rate": 0.625
+          },
+          {
+            "position": 11,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 12,
+            "upper_minus_lower_correct_rate": 0.45
+          }
+        ]
+      }
+    ],
+    "limitations": [
+      "Simulated answers are independent of question content; this cannot validate actual item difficulty or expert grade labels.",
+      "Candidates near thresholds can change pass status. Borderline subgroup is defined by assumed proficiency within 10 percentage points of the threshold, not by observed scores. Simulation is diagnostic, not proof of stable real-world grades.",
+      "Independent item responses overstate the benefit if real questions are correlated. Core scenarios are not expert-calibrated alternate forms or Senior-level evidence on their own.",
+      "Repeated assessments are simulated outside the service cooldown; the 90-day category change rule remains enforced.",
+      "Real validation needs consented test-retest data, expert labels, corrected item-total correlations and a larger calibrated question bank."
+    ]
+  },
+  "assessment_validation_baseline": {
+    "method": "150 synthetic profiles per category, two independently generated forms; same assumed proficiency for both attempts. Confirmed grade equals claimed grade on pass, otherwise unconfirmed.",
+    "response_model": "P(correct)=0.25+0.74*i/149, identical across items; independent Bernoulli answers. Seed 20261011.",
+    "comparison": "Shared profile and attempt seeds; old form uses first six answers from the same draw stream. No threshold changes.",
+    "discrimination_method": "Upper 27% minus lower 27% correct rate, grouped by first-attempt score excluding the measured item.",
+    "categories": [
+      {
+        "specialization": "backend",
+        "claimed_grade": "Junior",
+        "profiles": 150,
+        "questions_per_attempt": 6,
+        "confirmed_grade_agreement": 0.7667,
+        "cohen_kappa": 0.5001,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.55,
+        "score_correlation": 0.5877,
+        "mean_absolute_score_change": 17.78,
+        "pass_rates": [
+          0.3533,
+          0.3867
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.775
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.65
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.725
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.55
+          }
+        ]
+      },
+      {
+        "specialization": "backend",
+        "claimed_grade": "Middle",
+        "profiles": 150,
+        "questions_per_attempt": 6,
+        "confirmed_grade_agreement": 0.74,
+        "cohen_kappa": 0.4293,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.525,
+        "score_correlation": 0.6205,
+        "mean_absolute_score_change": 18.66,
+        "pass_rates": [
+          0.3667,
+          0.3333
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.65
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.725
+          }
+        ]
+      },
+      {
+        "specialization": "backend",
+        "claimed_grade": "Senior",
+        "profiles": 150,
+        "questions_per_attempt": 6,
+        "confirmed_grade_agreement": 0.8533,
+        "cohen_kappa": 0.5528,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.675,
+        "score_correlation": 0.6967,
+        "mean_absolute_score_change": 16.22,
+        "pass_rates": [
+          0.2,
+          0.2133
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.475
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.65
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.525
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.525
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.55
+          }
+        ]
+      },
+      {
+        "specialization": "frontend",
+        "claimed_grade": "Junior",
+        "profiles": 150,
+        "questions_per_attempt": 6,
+        "confirmed_grade_agreement": 0.7667,
+        "cohen_kappa": 0.4797,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.55,
+        "score_correlation": 0.6915,
+        "mean_absolute_score_change": 15.88,
+        "pass_rates": [
+          0.3067,
+          0.3667
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.625
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.75
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.475
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.5
+          }
+        ]
+      },
+      {
+        "specialization": "frontend",
+        "claimed_grade": "Middle",
+        "profiles": 150,
+        "questions_per_attempt": 6,
+        "confirmed_grade_agreement": 0.7267,
+        "cohen_kappa": 0.4046,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.45,
+        "score_correlation": 0.5372,
+        "mean_absolute_score_change": 20.88,
+        "pass_rates": [
+          0.3467,
+          0.3667
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.7
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.65
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.625
+          }
+        ]
+      },
+      {
+        "specialization": "frontend",
+        "claimed_grade": "Senior",
+        "profiles": 150,
+        "questions_per_attempt": 6,
+        "confirmed_grade_agreement": 0.82,
+        "cohen_kappa": 0.4444,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.6,
+        "score_correlation": 0.5823,
+        "mean_absolute_score_change": 19.34,
+        "pass_rates": [
+          0.2,
+          0.2067
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.775
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.675
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.375
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.55
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.675
+          }
+        ]
+      },
+      {
+        "specialization": "data",
+        "claimed_grade": "Junior",
+        "profiles": 150,
+        "questions_per_attempt": 6,
+        "confirmed_grade_agreement": 0.7333,
+        "cohen_kappa": 0.4408,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.6,
+        "score_correlation": 0.5926,
+        "mean_absolute_score_change": 19.89,
+        "pass_rates": [
+          0.3267,
+          0.4333
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.5
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.625
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.775
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.75
+          }
+        ]
+      },
+      {
+        "specialization": "data",
+        "claimed_grade": "Middle",
+        "profiles": 150,
+        "questions_per_attempt": 6,
+        "confirmed_grade_agreement": 0.6667,
+        "cohen_kappa": 0.2974,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.4,
+        "score_correlation": 0.5646,
+        "mean_absolute_score_change": 19.66,
+        "pass_rates": [
+          0.38,
+          0.3933
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.525
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.6
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.475
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.65
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.4
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.425
+          }
+        ]
+      },
+      {
+        "specialization": "data",
+        "claimed_grade": "Senior",
+        "profiles": 150,
+        "questions_per_attempt": 6,
+        "confirmed_grade_agreement": 0.8,
+        "cohen_kappa": 0.375,
+        "borderline_profiles": 40,
+        "borderline_agreement": 0.475,
+        "score_correlation": 0.6446,
+        "mean_absolute_score_change": 17.89,
+        "pass_rates": [
+          0.2,
+          0.2
+        ],
+        "item_discrimination": [
+          {
+            "position": 1,
+            "upper_minus_lower_correct_rate": 0.625
+          },
+          {
+            "position": 2,
+            "upper_minus_lower_correct_rate": 0.55
+          },
+          {
+            "position": 3,
+            "upper_minus_lower_correct_rate": 0.575
+          },
+          {
+            "position": 4,
+            "upper_minus_lower_correct_rate": 0.775
+          },
+          {
+            "position": 5,
+            "upper_minus_lower_correct_rate": 0.625
+          },
+          {
+            "position": 6,
+            "upper_minus_lower_correct_rate": 0.7
+          }
+        ]
+      }
+    ],
+    "limitations": [
+      "Simulated answers are independent of question content; this cannot validate actual item difficulty or expert grade labels.",
+      "Candidates near thresholds can change pass status. Borderline subgroup is defined by assumed proficiency within 10 percentage points of the threshold, not by observed scores. Simulation is diagnostic, not proof of stable real-world grades.",
+      "Independent item responses overstate the benefit if real questions are correlated. Core scenarios are not expert-calibrated alternate forms or Senior-level evidence on their own.",
+      "Repeated assessments are simulated outside the service cooldown; the 90-day category change rule remains enforced.",
+      "Real validation needs consented test-retest data, expert labels, corrected item-total correlations and a larger calibrated question bank."
+    ]
+  }
+}

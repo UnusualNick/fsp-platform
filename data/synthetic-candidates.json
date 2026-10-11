@@ -1,0 +1,362 @@
+[
+  {
+    "synthetic": true,
+    "id": 2,
+    "name": "Алексей Волков",
+    "specialization": "backend",
+    "grade": "Junior",
+    "skills": "Python, PostgreSQL, Docker",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 3,
+    "name": "Мария Соколова",
+    "specialization": "backend",
+    "grade": "Junior",
+    "skills": "Go, PostgreSQL, Redis",
+    "score": 83.3,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 4,
+    "name": "Илья Орлов",
+    "specialization": "backend",
+    "grade": "Junior",
+    "skills": "Python, Django, SQL",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 5,
+    "name": "Анна Кузнецова",
+    "specialization": "backend",
+    "grade": "Junior",
+    "skills": "Java, Spring, Kafka",
+    "score": 100,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 6,
+    "name": "Дмитрий Новиков",
+    "specialization": "backend",
+    "grade": "Middle",
+    "skills": "Python, PostgreSQL, Docker",
+    "score": 100,
+    "fsp_achievement_count": 2
+  },
+  {
+    "synthetic": true,
+    "id": 7,
+    "name": "София Морозова",
+    "specialization": "backend",
+    "grade": "Middle",
+    "skills": "Go, PostgreSQL, Redis",
+    "score": 83.3,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 8,
+    "name": "Максим Лебедев",
+    "specialization": "backend",
+    "grade": "Middle",
+    "skills": "Python, Django, SQL",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 9,
+    "name": "Алиса Попова",
+    "specialization": "backend",
+    "grade": "Middle",
+    "skills": "Java, Spring, Kafka",
+    "score": 100,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 10,
+    "name": "Никита Серов",
+    "specialization": "backend",
+    "grade": "Senior",
+    "skills": "Python, PostgreSQL, Docker",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 11,
+    "name": "Дарья Белова",
+    "specialization": "backend",
+    "grade": "Senior",
+    "skills": "Go, PostgreSQL, Redis",
+    "score": 100,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 12,
+    "name": "Кирилл Фомин",
+    "specialization": "backend",
+    "grade": "Senior",
+    "skills": "Python, Django, SQL",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 13,
+    "name": "Елена Павлова",
+    "specialization": "backend",
+    "grade": "Senior",
+    "skills": "Java, Spring, Kafka",
+    "score": 100,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 14,
+    "name": "Алексей Волков",
+    "specialization": "frontend",
+    "grade": "Junior",
+    "skills": "TypeScript, React, CSS",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 15,
+    "name": "Мария Соколова",
+    "specialization": "frontend",
+    "grade": "Junior",
+    "skills": "JavaScript, Vue, HTML",
+    "score": 83.3,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 16,
+    "name": "Илья Орлов",
+    "specialization": "frontend",
+    "grade": "Junior",
+    "skills": "TypeScript, React, Accessibility",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 17,
+    "name": "Анна Кузнецова",
+    "specialization": "frontend",
+    "grade": "Junior",
+    "skills": "JavaScript, CSS, Web APIs",
+    "score": 100,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 18,
+    "name": "Дмитрий Новиков",
+    "specialization": "frontend",
+    "grade": "Middle",
+    "skills": "TypeScript, React, CSS",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 19,
+    "name": "София Морозова",
+    "specialization": "frontend",
+    "grade": "Middle",
+    "skills": "JavaScript, Vue, HTML",
+    "score": 83.3,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 20,
+    "name": "Максим Лебедев",
+    "specialization": "frontend",
+    "grade": "Middle",
+    "skills": "TypeScript, React, Accessibility",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 21,
+    "name": "Алиса Попова",
+    "specialization": "frontend",
+    "grade": "Middle",
+    "skills": "JavaScript, CSS, Web APIs",
+    "score": 100,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 22,
+    "name": "Никита Серов",
+    "specialization": "frontend",
+    "grade": "Senior",
+    "skills": "TypeScript, React, CSS",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 23,
+    "name": "Дарья Белова",
+    "specialization": "frontend",
+    "grade": "Senior",
+    "skills": "JavaScript, Vue, HTML",
+    "score": 100,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 24,
+    "name": "Кирилл Фомин",
+    "specialization": "frontend",
+    "grade": "Senior",
+    "skills": "TypeScript, React, Accessibility",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 25,
+    "name": "Елена Павлова",
+    "specialization": "frontend",
+    "grade": "Senior",
+    "skills": "JavaScript, CSS, Web APIs",
+    "score": 100,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 26,
+    "name": "Алексей Волков",
+    "specialization": "data",
+    "grade": "Junior",
+    "skills": "Python, SQL, pandas",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 27,
+    "name": "Мария Соколова",
+    "specialization": "data",
+    "grade": "Junior",
+    "skills": "SQL, ClickHouse, BI",
+    "score": 83.3,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 28,
+    "name": "Илья Орлов",
+    "specialization": "data",
+    "grade": "Junior",
+    "skills": "Python, pandas, Statistics",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 29,
+    "name": "Анна Кузнецова",
+    "specialization": "data",
+    "grade": "Junior",
+    "skills": "Python, SQL, ML",
+    "score": 100,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 30,
+    "name": "Дмитрий Новиков",
+    "specialization": "data",
+    "grade": "Middle",
+    "skills": "Python, SQL, pandas",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 31,
+    "name": "София Морозова",
+    "specialization": "data",
+    "grade": "Middle",
+    "skills": "SQL, ClickHouse, BI",
+    "score": 83.3,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 32,
+    "name": "Максим Лебедев",
+    "specialization": "data",
+    "grade": "Middle",
+    "skills": "Python, pandas, Statistics",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 33,
+    "name": "Алиса Попова",
+    "specialization": "data",
+    "grade": "Middle",
+    "skills": "Python, SQL, ML",
+    "score": 100,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 34,
+    "name": "Никита Серов",
+    "specialization": "data",
+    "grade": "Senior",
+    "skills": "Python, SQL, pandas",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 35,
+    "name": "Дарья Белова",
+    "specialization": "data",
+    "grade": "Senior",
+    "skills": "SQL, ClickHouse, BI",
+    "score": 100,
+    "fsp_achievement_count": 0
+  },
+  {
+    "synthetic": true,
+    "id": 36,
+    "name": "Кирилл Фомин",
+    "specialization": "data",
+    "grade": "Senior",
+    "skills": "Python, pandas, Statistics",
+    "score": 100,
+    "fsp_achievement_count": 1
+  },
+  {
+    "synthetic": true,
+    "id": 37,
+    "name": "Елена Павлова",
+    "specialization": "data",
+    "grade": "Senior",
+    "skills": "Python, SQL, ML",
+    "score": 100,
+    "fsp_achievement_count": 0
+  }
+]
