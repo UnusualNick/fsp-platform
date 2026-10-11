@@ -59,7 +59,7 @@ class Service:
     if not self.demo:self.send_verification(email,token)
   except sqlite3.IntegrityError:raise ApiError(409,'Аккаунт с этой почтой уже существует')
   result={'message':'Подтвердите адрес по ссылке в письме','demo':self.demo}
-  if self.demo:result['verification_token']=token;result['message']='Локальная демопочта: нажмите «Подтвердить email». SMTP в деморежиме не используется.'
+  if self.demo:result['verification_token']=token;result['message']='Подтвердите email кнопкой ниже.'
   return result
  def send_verification(self,email,token):
   host=os.environ.get('SMTP_HOST');base=os.environ.get('PUBLIC_URL');sender=os.environ.get('SMTP_FROM')
@@ -156,7 +156,7 @@ class Service:
   fid=text(d,'fsp_id',100,True);code=text(d,'code',100,True)
   from seed import REGISTRY
   row=REGISTRY.get(fid)
-  if not row or row['email']!=u['email'] or not hmac.compare_digest(row['code'],code):raise ApiError(400,'ID, код или владелец демозаписи не совпадают')
+  if not row or row['email']!=u['email'] or not hmac.compare_digest(row['code'],code):raise ApiError(400,'Проверьте ID, код и email владельца записи')
   with self.store.connect() as c:
    c.execute('UPDATE profiles SET fsp_id=?,achievements=? WHERE user_id=?',(fid,json.dumps(row['achievements'],ensure_ascii=False),u['id']))
    self.audit(c,u['id'],'fsp.linked',fid)

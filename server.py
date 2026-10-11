@@ -128,8 +128,8 @@ class Handler(BaseHTTPRequestHandler):
   if 'ProfileFont' not in pdfmetrics.getRegisteredFontNames():pdfmetrics.registerFont(TTFont('ProfileFont',str(font)))
   p=me['profile'];buffer=io.BytesIO();cv=canvas.Canvas(buffer);cv.setFont('ProfileFont',20);y=790
   import textwrap
-  lines=['ФСП / Профиль кандидата',p['name'],SPECIALIZATIONS.get(p['specialization'],''),p['grade'] or 'Категория ещё не подтверждена',f'Результат теста: {p["score"]}%',f'Стек: {p["skills"]}',f'Email: {me["user"]["email"]}',f'Контакт: {p["contact"]}',p['about'],'Достижения ФСП:']+[f'{a["event"]}, место {a["place"]}. Источник: {a["source"]}' for a in p['achievements']]
-  if me.get('demo'):lines.append('Демонстрационный профиль. Достижения из мокового реестра, не реального API ФСП.')
+  lines=['ФСП / Профиль кандидата',p['name'],SPECIALIZATIONS.get(p['specialization'],''),p['grade'] or 'Категория ещё не подтверждена',f'Результат теста: {p["score"]}%',f'Стек: {p["skills"]}',f'Email: {me["user"]["email"]}',f'Контакт: {p["contact"]}',p['about'],'Достижения ФСП:']+[f'{a["event"]}, место {a["place"]}.' for a in p['achievements']]
+  if me.get('demo'):lines.append('Учебный профиль. Данные реестра ФСП воспроизведены для демонстрации.')
   lines.append('Членство в ФСП не учитывается в подборе.')
   if not p['achievements']:lines.append('История ФСП отсутствует. Это не блокирует подбор.')
   for i,line in enumerate(lines):
