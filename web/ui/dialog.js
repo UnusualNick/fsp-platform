@@ -2,9 +2,11 @@ import animate from './motion.js';
 
 const modal = document.querySelector('#modal');
 let animation;
+let pressedBackdrop = false;
 
 function open(content) {
   animation?.cancel();
+  pressedBackdrop = false;
   document.querySelector('#modal-content').innerHTML = content;
   scopeFieldIds();
   if (!modal.open) modal.showModal();
@@ -34,6 +36,21 @@ function scopeFieldIds() {
   });
 }
 
+function isBackdrop(event) {
+  if (event.target !== modal) return false;
+  const bounds = modal.getBoundingClientRect();
+  return event.clientX < bounds.left || event.clientX > bounds.right
+    || event.clientY < bounds.top || event.clientY > bounds.bottom;
+}
+
+modal.addEventListener('pointerdown', event => {
+  pressedBackdrop = event.button === 0 && isBackdrop(event);
+});
+modal.addEventListener('pointercancel', () => { pressedBackdrop = false; });
+modal.addEventListener('click', event => {
+  if (pressedBackdrop && isBackdrop(event)) close();
+  pressedBackdrop = false;
+});
 modal.addEventListener('cancel', event => { event.preventDefault(); close(); });
 
 export default { open, close };
