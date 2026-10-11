@@ -1,9 +1,10 @@
 """Explainable ranking within an assessed category, without personal attributes."""
 import json
+from needs import normalized_skills
 from assessment import SPECIALIZATIONS, GRADES
 
 def rank(candidates, need):
- wanted = {s.strip().lower() for s in need.get('skills', '').split(',') if s.strip()}
+ wanted = normalized_skills(need.get('skills', ''))
  ranked=[]
  for row in candidates:
   c=dict(row)
@@ -13,7 +14,7 @@ def rank(candidates, need):
   # Only verified registry records are evidence; membership is not a ranking signal.
   achievements=[a for a in achievements if a.get('verified') is True]
   if need.get('fsp_only') and not achievements: continue
-  skills={s.strip().lower() for s in c['skills'].split(',') if s.strip()}
+  skills=normalized_skills(c['skills'])
   coverage = len(wanted & skills)/len(wanted) if wanted else 1
   test_points=round(c['score']*0.3,1)
   skill_points=round(60*coverage,1)

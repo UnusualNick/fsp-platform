@@ -91,6 +91,9 @@ class Handler(BaseHTTPRequestHandler):
     elif method=='POST' and path=='/api/auth/logout':
      result=s.logout(self.token());cookie='session=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0'
     elif method=='PUT' and path=='/api/profile':result=s.update_profile(u,d)
+    elif path=='/api/needs/preview' and method=='POST':role('employer');result=s.need_preview(u,d)
+    elif path=='/api/practice' and method=='POST':role('candidate');result=s.practice(u)
+    elif path=='/api/practice/submit' and method=='POST':role('candidate');result=s.submit_practice(u,d)
     elif path=='/api/assessment/start' and method=='POST':role('candidate');result=s.start_assessment(u,d)
     elif path=='/api/assessment/active' and method=='GET':role('candidate');result=s.active_assessment(u)
     elif path=='/api/assessment/submit' and method=='POST':role('candidate');result=s.submit_assessment(u,d)

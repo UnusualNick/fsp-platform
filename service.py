@@ -3,6 +3,8 @@ import hashlib,hmac,json,re,secrets,time,sqlite3,os,smtplib
 from email.message import EmailMessage
 from assessment import SPECIALIZATIONS,GRADES,generate,public_form,evaluate
 from matching import rank
+from needs import parse_need
+from practice_bank import generate_practice
 
 DAY=86400
 class ApiError(Exception):
@@ -261,3 +263,38 @@ class Service:
    where='a.candidate_id=?' if u['role']=='candidate' else 'v.employer_id=?'
    rows=c.execute('SELECT a.*,v.title,c.name AS company_name,p.name AS candidate_name FROM applications a JOIN vacancies v ON v.id=a.vacancy_id JOIN companies c ON c.user_id=v.employer_id JOIN profiles p ON p.user_id=a.candidate_id WHERE '+where+' ORDER BY a.id DESC',(u['id'],)).fetchall()
   return {'applications':[dict(r) for r in rows]}
+
+ def need_preview(self,u,d):
+  if u['role']!='employer':raise ApiError(403,'Действие недоступно для этой роли')
+  return parse_need(text(d,'description',4000,True))
+ def practice(self,u):
+  if u['role']!='candidate':raise ApiError(403,'Действие недоступно для этой роли')
+  now=time.time()
+  with self.store.connect() as c:
+   c.execute('BEGIN IMMEDIATE')
+   profile=c.execute('SELECT specialization,grade FROM profiles WHERE user_id=?',(u['id'],)).fetchone()
+   if not profile['grade']:raise ApiError(400,'Сначала подтвердите категорию тестом')
+   latest=c.execute('SELECT * FROM practice WHERE user_id=? ORDER BY created DESC LIMIT 1',(u['id'],)).fetchone()
+   if not latest or now>=latest['created']+7*DAY:
+    form=generate_practice(profile['specialization'])
+    pid=secrets.token_urlsafe(24)
+    c.execute('INSERT INTO practice(id,user_id,specialization,form,created,expires) VALUES(?,?,?,?,?,?)',(pid,u['id'],profile['specialization'],json.dumps(form,ensure_ascii=False),now,now+7*DAY))
+    latest=c.execute('SELECT * FROM practice WHERE id=?',(pid,)).fetchone()
+    self.audit(c,u['id'],'practice.assigned',pid)
+   history=[{'id':r['id'],'created':r['created'],'completed':r['completed'],'specialization':r['specialization'],'result':json.loads(r['result'])} for r in c.execute('SELECT * FROM practice WHERE user_id=? AND completed IS NOT NULL ORDER BY created DESC LIMIT 20',(u['id'],))]
+  form=json.loads(latest['form'])
+  return {'id':latest['id'],'specialization':latest['specialization'],'questions':[] if latest['completed'] else public_form(form)['questions'],'completed':latest['completed'],'expires':latest['expires'],'next_at':latest['created']+7*DAY,'history':history}
+ def submit_practice(self,u,d):
+  if u['role']!='candidate':raise ApiError(403,'Действие недоступно для этой роли')
+  pid=text(d,'id',100,True);answers=d.get('answers');now=time.time()
+  with self.store.connect() as c:
+   c.execute('BEGIN IMMEDIATE')
+   row=c.execute('SELECT * FROM practice WHERE id=? AND user_id=?',(pid,u['id'])).fetchone()
+   if not row:raise ApiError(404,'Задание не найдено')
+   if row['completed']:raise ApiError(409,'Ответ уже сохранён')
+   if now>=row['expires']:raise ApiError(409,'Срок задания истёк')
+   questions=json.loads(row['form'])['questions']
+   if not isinstance(answers,dict) or set(answers)!={q['id'] for q in questions} or any(type(answers[q['id']]) is not int or not 0<=answers[q['id']]<len(q['options']) for q in questions):raise ApiError(400,'Ответьте на каждое задание')
+   result={'correct':sum(answers[q['id']]==q['answer'] for q in questions),'total':len(questions),'feedback':[{'prompt':q['prompt'],'correct':answers[q['id']]==q['answer'],'answer':q['options'][q['answer']]} for q in questions]}
+   c.execute('UPDATE practice SET completed=?,result=? WHERE id=?',(now,json.dumps(result,ensure_ascii=False),pid));self.audit(c,u['id'],'practice.completed',pid)
+  return result

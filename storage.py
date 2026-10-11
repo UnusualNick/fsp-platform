@@ -15,6 +15,8 @@ CREATE INDEX IF NOT EXISTS invitations_candidate ON invitations(candidate_id);
 CREATE INDEX IF NOT EXISTS invitations_employer ON invitations(employer_id);
 CREATE TABLE IF NOT EXISTS vacancies(id INTEGER PRIMARY KEY,employer_id INTEGER REFERENCES users(id),title TEXT NOT NULL,description TEXT NOT NULL,specialization TEXT NOT NULL,grade TEXT NOT NULL,skills TEXT NOT NULL,salary_min INTEGER NOT NULL,salary_max INTEGER NOT NULL,created REAL NOT NULL);
 CREATE TABLE IF NOT EXISTS applications(id INTEGER PRIMARY KEY,vacancy_id INTEGER REFERENCES vacancies(id),candidate_id INTEGER REFERENCES users(id),status TEXT DEFAULT 'sent',created REAL NOT NULL,UNIQUE(vacancy_id,candidate_id));
+CREATE TABLE IF NOT EXISTS practice(id TEXT PRIMARY KEY,user_id INTEGER NOT NULL REFERENCES users(id),specialization TEXT NOT NULL,form TEXT NOT NULL,created REAL NOT NULL,expires REAL NOT NULL,completed REAL,result TEXT);
+CREATE INDEX IF NOT EXISTS practice_owner ON practice(user_id,created);
 CREATE TABLE IF NOT EXISTS audit(id INTEGER PRIMARY KEY,user_id INTEGER,event TEXT,created REAL,details TEXT);
 '''
 class Storage:

@@ -130,3 +130,41 @@ class PlatformTests(unittest.TestCase):
   self.assertTrue(evaluate(old,{q['id']:q['answer'] for q in old['questions']})['passed'])
  def test_session_logout(self):
   _,token=self.s.login({'email':self.candidate['email'],'password':'DemoPassword42!'});self.s.logout(token);self.error(401,self.s.auth,token)
+
+class QuickImprovementTests(unittest.TestCase):
+ setUp=PlatformTests.setUp
+ tearDown=PlatformTests.tearDown
+ user=PlatformTests.user
+ error=PlatformTests.error
+ def test_practice_ownership_repeat_and_grade_unchanged(self):
+  before=self.s.me(self.candidate)['profile'];task=self.s.practice(self.candidate)
+  self.assertEqual(3,len(task['questions']));self.assertTrue(all('answer' not in q for q in task['questions']))
+  self.assertEqual(task['id'],self.s.practice(self.candidate)['id'])
+  with self.db.connect() as c:form=json.loads(c.execute('SELECT form FROM practice WHERE id=?',(task['id'],)).fetchone()[0])
+  payload={'id':task['id'],'answers':{q['id']:q['answer'] for q in form['questions']}}
+  self.error(404,self.s.submit_practice,self.other,payload)
+  self.error(400,self.s.submit_practice,self.candidate,{'id':task['id'],'answers':{}})
+  self.assertEqual(3,self.s.submit_practice(self.candidate,payload)['correct'])
+  self.error(409,self.s.submit_practice,self.candidate,payload)
+  self.assertEqual([],self.s.practice(self.candidate)['questions'])
+  self.assertEqual(1,len(self.s.practice(self.candidate)['history']))
+  after=self.s.me(self.candidate)['profile'];self.assertEqual((before['grade'],before['score']),(after['grade'],after['score']))
+ def test_practice_weekly_and_expiry(self):
+  task=self.s.practice(self.candidate)
+  with self.db.connect() as c:c.execute('UPDATE practice SET expires=? WHERE id=?',(time.time()-1,task['id']))
+  self.error(409,self.s.submit_practice,self.candidate,{'id':task['id'],'answers':{}})
+  with self.db.connect() as c:c.execute('UPDATE practice SET created=? WHERE id=?',(time.time()-8*86400,task['id']))
+  self.assertNotEqual(task['id'],self.s.practice(self.candidate)['id'])
+  self.error(403,self.s.practice,self.emp)
+  with self.db.connect() as c:c.execute('UPDATE profiles SET grade=NULL WHERE user_id=?',(self.other['id'],))
+  self.error(400,self.s.practice,self.other)
+ def test_need_preview_and_skill_aliases(self):
+  r=self.s.need_preview(self.emp,{'description':'Нужен middle frontend разработчик: React, TS и JS'})
+  self.assertEqual('frontend',r['categories'][0]['specialization']);self.assertEqual('Middle',r['grade'])
+  self.assertIn('TypeScript',r['skills']);self.assertIn('JavaScript',r['skills'])
+  ambiguous=self.s.need_preview(self.emp,{'description':'Junior или Middle, неизвестный инструмент'})
+  self.assertIsNone(ambiguous['grade']);self.assertEqual([],ambiguous['categories'])
+  self.error(403,self.s.need_preview,self.candidate,{'description':'backend'})
+  a=self.s.candidates(self.emp,{'specialization':'backend','grade':'Middle','skills':'Python, PostgreSQL','skills_mode':'all'})
+  b=self.s.candidates(self.emp,{'specialization':'backend','grade':'Middle','skills':'питон, Postgres','skills_mode':'all'})
+  self.assertEqual(a,b)

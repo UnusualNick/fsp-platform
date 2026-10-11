@@ -31,3 +31,15 @@ class HttpSecurityTests(unittest.TestCase):
   csrf,_=self.login('candidate')
   self.assertEqual(403,self.request('/api/vacancies/1','PUT',{}, {'X-CSRF-Token':csrf})[0])
   self.assertEqual(403,self.request('/api/applications/1/status','POST',{'status':'accepted'}, {'X-CSRF-Token':csrf})[0])
+
+ def test_need_and_practice_http_role_and_csrf(self):
+  csrf,_=self.login();headers={'X-CSRF-Token':csrf}
+  self.assertEqual(403,self.request('/api/needs/preview','POST',{'description':'backend Python'})[0])
+  status,r,_=self.request('/api/needs/preview','POST',{'description':'middle frontend React TS'},headers)
+  self.assertEqual(200,status);self.assertEqual('frontend',r['categories'][0]['specialization'])
+  self.assertEqual(403,self.request('/api/practice','POST',{},headers)[0])
+  csrf,_=self.login('candidate');headers={'X-CSRF-Token':csrf}
+  self.assertEqual(403,self.request('/api/needs/preview','POST',{'description':'Python'},headers)[0])
+  status,r,_=self.request('/api/practice','POST',{},headers);self.assertEqual(200,status)
+  self.assertEqual(3,len(r['questions']));self.assertTrue(all('answer' not in q for q in r['questions']))
+  self.assertEqual(400,self.request('/api/practice/submit','POST',{'id':r['id'],'answers':{}},headers)[0])

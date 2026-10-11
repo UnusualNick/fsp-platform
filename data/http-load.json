@@ -1,0 +1,10 @@
+{
+  "requests": 100,
+  "concurrency": 8,
+  "errors": 0,
+  "elapsed_seconds": 0.09,
+  "p50_ms": 5.86,
+  "p95_ms": 12.67,
+  "p99_ms": 17.87,
+  "scope": "Local read-only HTTP smoke benchmark; 36 synthetic profiles, shared employer session. Does not validate writes, large datasets, real users or production throughput."
+}
