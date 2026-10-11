@@ -87,3 +87,5 @@ main > .card + .card { margin-top: 20px; }
   .list-title { flex-wrap: wrap; }
   .form-actions { flex-wrap: wrap; }
 }
+
+.invitation-actions { display: flex; flex-wrap: wrap; gap: 8px; }
