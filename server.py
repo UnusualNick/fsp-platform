@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Small dependency-light HTTP adapter. Business logic and storage are separate modules."""
-import argparse,io,json,os,re,time,threading
+import argparse,json,os,re,time,threading
 from collections import defaultdict,deque
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from http.cookies import SimpleCookie
@@ -37,6 +37,7 @@ STATIC_FILES['/ui/navigation.js']=('ui/navigation.js','text/javascript; charset=
 STATIC_FILES['/ui/select-keyboard.js']=('ui/select-keyboard.js','text/javascript; charset=utf-8')
 STATIC_FILES['/ui/select-menu.js']=('ui/select-menu.js','text/javascript; charset=utf-8')
 STATIC_FILES['/ui/select.js']=('ui/select.js','text/javascript; charset=utf-8')
+STATIC_FILES['/ui/profile-fields.js']=('ui/profile-fields.js','text/javascript; charset=utf-8')
 STATIC_FILES['/ui/toast.js']=('ui/toast.js','text/javascript; charset=utf-8')
 
 
@@ -136,26 +137,10 @@ class Handler(BaseHTTPRequestHandler):
    self.respond(500,{'error':'Внутренняя ошибка сервера'})
  def profile_pdf(self,me):
   try:
-   from reportlab.pdfgen import canvas
-   from reportlab.pdfbase import pdfmetrics
-   from reportlab.pdfbase.ttfonts import TTFont
-  except ImportError:raise ApiError(503,'Для PDF установите зависимости из requirements.txt')
-  font=ROOT/'web/fonts/DejaVuSans.ttf'
-  if not font.exists():raise ApiError(503,'Шрифт профиля недоступен')
-  if 'ProfileFont' not in pdfmetrics.getRegisteredFontNames():pdfmetrics.registerFont(TTFont('ProfileFont',str(font)))
-  p=me['profile'];buffer=io.BytesIO();cv=canvas.Canvas(buffer);cv.setFont('ProfileFont',20);y=790
-  import textwrap
-  lines=['ФСП / Профиль кандидата',p['name'],SPECIALIZATIONS.get(p['specialization'],''),p['grade'] or 'Категория ещё не подтверждена',f'Результат теста: {p["score"]}%',f'Стек: {p["skills"]}',f'Email: {me["user"]["email"]}',f'Контакт: {p["contact"]}',p['about'],'Достижения ФСП:']+[f'{a["event"]}, место {a["place"]}' for a in p['achievements']]
-  if me.get('demo'):lines.append('Учебный профиль. Данные реестра ФСП воспроизведены для демонстрации')
-  lines.append('Членство в ФСП не учитывается в подборе')
-  if not p['achievements']:lines.append('Достижений ФСП нет. Для подбора они необязательны')
-  for i,line in enumerate(lines):
-   cv.setFont('ProfileFont',18 if i<2 else 11)
-   for fragment in textwrap.wrap(line,75) or ['']:
-    if y<60:cv.showPage();cv.setFont('ProfileFont',11);y=790
-    cv.drawString(42,y,fragment);y-=22
-   y-=8
-  cv.save();self.respond(200,buffer.getvalue(),'application/pdf')
+   from profile_pdf import build_profile_pdf
+   pdf=build_profile_pdf(me)
+  except (ImportError,OSError):raise ApiError(503,'Для PDF нужны зависимости и шрифт из комплекта приложения')
+  self.respond(200,pdf,'application/pdf')
 
 def create_server(host,port,db,demo=True):
  store=Storage(db)

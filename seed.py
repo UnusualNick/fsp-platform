@@ -15,7 +15,7 @@ def seed(store):
    uid=c.execute('INSERT INTO users(email,password,role,verified,created,consent_at) VALUES(?,?,?,?,?,?)',(email,hash_password(DEMO_PASSWORD),role,1,now,now)).lastrowid
    return uid
   employer=user('employer@example.test','employer')
-  c.execute('INSERT INTO companies VALUES(?,?,?,?)',(employer,'Орбита Технологии','Создаём инструменты для разработчиков','talent@orbita.example.test'))
+  c.execute('INSERT INTO companies(user_id,name,description,contact) VALUES(?,?,?,?)',(employer,'Орбита Технологии','Создаём инструменты для разработчиков','talent@orbita.example.test'))
   dataset=[]
   for si,(spec,label) in enumerate(SPECIALIZATIONS.items()):
    for gi,grade in enumerate(GRADES):

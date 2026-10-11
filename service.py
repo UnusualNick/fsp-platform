@@ -101,9 +101,9 @@ class Service:
   return {'user':u,'profile':p,'history':history,'demo':self.demo}
  def update_profile(self,u,d):
   if u['role']=='employer':
-   fields={k:text(d,k,2000,k in ('name','contact')) for k in ('name','description','contact')}
+   fields={k:text(d,k,2000,k in ('name','contact')) for k in ('name','description','contact','activity')}
   else:
-   fields={k:text(d,k,2000,k=='name') for k in ('name','skills','about','contact')}
+   fields={k:text(d,k,2000,k=='name') for k in ('name','skills','about','contact','roles','experience','soft_skills')}
    published=d.get('published',False)
    if type(published) is not bool:raise ApiError(400,'Некорректное согласие на публикацию')
    fields['published']=int(published)
@@ -126,7 +126,7 @@ class Service:
    if active:raise ApiError(409,'Есть активный тест. Завершите его или дождитесь окончания 20 минут')
    count=c.execute('SELECT COUNT(*) FROM attempts WHERE user_id=? AND created>?',(u['id'],now-DAY)).fetchone()[0]
    if count>=3:raise ApiError(429,'Не более трёх тестов в сутки')
-   form=generate(spec,grade);aid=secrets.token_urlsafe(18)
+   form={**generate(spec,grade),'industry':industry};aid=secrets.token_urlsafe(18)
    c.execute('INSERT INTO attempts(id,user_id,form,created,expires) VALUES(?,?,?,?,?)',(aid,u['id'],json.dumps(form,ensure_ascii=False),now,now+1200))
    c.execute('UPDATE profiles SET claimed_grade=?,industry=? WHERE user_id=?',(grade,industry,u['id']))
   return {**public_form(form),'attempt_id':aid,'expires':now+1200}
@@ -146,6 +146,7 @@ class Service:
    try:result=evaluate(form,d.get('answers'))
    except ValueError as e:raise ApiError(400,str(e))
    result.update({'grade':form['grade'],'specialization':form['specialization'],'version':form['version']})
+   if 'industry' in form:result['industry']=form['industry']
    if result['passed']:
     c.execute('UPDATE profiles SET grade=?,specialization=?,score=?,grade_changed=? WHERE user_id=?',(form['grade'],form['specialization'],result['score'],now,u['id']))
    c.execute('UPDATE attempts SET completed=?,result=? WHERE id=?',(now,json.dumps(result),aid))

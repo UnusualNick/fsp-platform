@@ -20,4 +20,5 @@ def rank(candidates, need):
   skill_points=round(60*coverage,1)
   fsp_points=min(10,len(achievements)*5)
   ranked.append({'id':c['user_id'],'name':c['name'],'specialization':c['specialization'],'grade':c['grade'],'skills':c['skills'],'about':c['about'],'score':c['score'],'achievements':achievements,'fsp_id':c['fsp_id'],'match':round(skill_points+test_points+fsp_points,1),'breakdown':{'skills':skill_points,'assessment':test_points,'fsp':fsp_points},'explanation':f'Категория подтверждена тестом. Совпало {len(wanted & skills)} из {len(wanted)} навыков. Тест: {c["score"]}%. Подтверждённых достижений ФСП: {len(achievements)}. Членство в Федерации не учитывается','contact_unlocked':False})
+  ranked[-1].update({key:c.get(key,'') for key in ('roles','experience','soft_skills')})
  return sorted(ranked,key=lambda c:(-c['match'],-c['score'],c['id']))

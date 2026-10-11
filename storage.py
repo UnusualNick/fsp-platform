@@ -22,7 +22,16 @@ CREATE TABLE IF NOT EXISTS audit(id INTEGER PRIMARY KEY,user_id INTEGER,event TE
 class Storage:
  def __init__(self,path):
   self.path=str(path);Path(path).parent.mkdir(parents=True,exist_ok=True)
-  with self.connect() as c:c.executescript(SCHEMA)
+  with self.connect() as c:
+   c.executescript(SCHEMA)
+   self.migrate_profile_fields(c)
+ @staticmethod
+ def migrate_profile_fields(c):
+  # Existing databases keep their records and start with empty optional resume fields.
+  for table,fields in {'profiles':('roles','experience','soft_skills'),'companies':('activity',)}.items():
+   columns={row['name'] for row in c.execute(f'PRAGMA table_info({table})')}
+   for field in fields:
+    if field not in columns:c.execute(f"ALTER TABLE {table} ADD COLUMN {field} TEXT NOT NULL DEFAULT ''")
  @contextmanager
  def connect(self):
   c=sqlite3.connect(self.path,timeout=15);c.row_factory=sqlite3.Row;c.execute('PRAGMA foreign_keys=ON')
