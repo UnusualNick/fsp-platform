@@ -1,0 +1,85 @@
+.layout { max-width: 1424px; margin: auto; padding: 0 32px 48px; }
+.sidebar { display: flex; align-items: center; gap: 24px; min-height: 104px; border-bottom: 1px solid var(--border); }
+.sidebar .logo { width: 205px; flex: 0 0 205px; }
+.sidebar .subtitle { display: none; }
+.nav { display: flex; align-items: center; gap: 4px; margin-left: auto; position: relative; }
+.nav button { position: relative; font-size: 12px; padding: 12px; min-height: 48px; white-space: nowrap; }
+.nav button:hover, .inbox-tabs button:hover, .switch button:hover { background: var(--surface-muted); }
+.nav button.active, .inbox-tabs button.active { color: var(--accent); }
+.nav-indicator {
+  pointer-events: none; position: absolute; left: 12px; right: 12px; bottom: 0;
+  height: 3px; background: var(--accent); border-radius: 999px; transform-origin: left center;
+}
+.topbar { display: flex; justify-content: flex-end; align-items: stretch; gap: 8px; padding: 16px 0 24px; }
+.account-chip { display: inline-flex; align-items: center; gap: 10px; min-width: 0; padding: 8px 12px; border-color: var(--border); background: #fff; }
+.account-label { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 2px; min-width: 0; }
+.account-label strong { font-size: 12px; line-height: 18px; overflow-wrap: anywhere; }
+.account-label > span { font-size: 10px; line-height: 16px; color: var(--muted); }
+.account-chip:hover { background: var(--surface-muted); border-color: #b9b5ce; }
+.topbar-right { display: flex; }
+.avatar { display: grid; place-items: center; width: 32px; height: 32px; flex: 0 0 32px; border-radius: 50%; background: var(--surface-accent); color: var(--accent); font-size: 10px; }
+.mobile-logout { min-height: 52px; padding: 8px 16px; font-size: 12px; }
+#main { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.page-header { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 4px 0 8px; }
+.page-header p { margin-top: 8px; }
+.page-header > button { flex-shrink: 0; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr); gap: 24px; align-items: start; }
+.stack { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.card, .search-section, .results-panel { border: 1px solid var(--border); border-radius: 8px; background: #fff; min-width: 0; }
+.card { padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.card > button { align-self: flex-start; }
+.card p + p { margin-top: 0; }
+.section-heading { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.section-heading p { color: var(--muted); font-size: 12px; margin-top: 4px; }
+.section-heading .field { width: 230px; flex-shrink: 0; }
+.landing { min-height: 100dvh; display: grid; grid-template-columns: 1fr 1fr; }
+.landing-art { display: flex; flex-direction: column; justify-content: space-between; gap: 48px; padding: 48px; background: var(--navy); color: white; overflow: hidden; }
+.landing-art .logo { width: 280px; background: #fff; border-radius: 4px; padding: 12px; }
+.landing-art .eyebrow { color: #c7c3f2; margin-bottom: 16px; }
+.pitch h1 { font-size: clamp(28px, 3.2vw, 48px); line-height: 1.25; }
+.pitch h1 span { color: #aaa0ff; }
+.pitch p { max-width: 450px; margin-top: 24px; font-size: 15px; }
+.brand-pattern { width: 360px; margin: 40px 0 0 auto; }
+.landing-art footer { font-size: 11px; color: #c7c3f2; }
+.landing-form { display: grid; place-items: center; padding: 48px; }
+.auth-wrap { width: 100%; max-width: 400px; }
+.auth-wrap > .muted { margin-top: 8px; }
+.switch { display: flex; gap: 8px; border-bottom: 1px solid var(--border); margin: 28px 0; }
+.switch button { position: relative; flex: 1; padding: 12px; }
+.switch button.active { color: var(--accent); }
+.demo-access { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+.demo-access h2 { font-size: 13px; margin-bottom: 16px; }
+.demo-buttons { display: flex; flex-direction: column; gap: 12px; }
+#verify-area:empty { display: none; }
+#verify-area { display: grid; gap: 16px; margin-top: 24px; }
+@media (max-width: 1100px) {
+  .sidebar { flex-wrap: wrap; padding: 24px 0 0; gap: 16px; }
+  .nav { width: 100%; margin: 0; }
+  .nav button { flex: 1; }
+  .landing-art, .landing-form { padding: 32px; }
+}
+@media (max-width: 800px) {
+  .layout { padding: 0 20px 32px; }
+  .two-col { grid-template-columns: minmax(0, 1fr); }
+  .landing { grid-template-columns: minmax(0, 1fr); }
+  .landing-art { display: none; }
+  .landing-form { padding: 40px 24px; }
+}
+@media (max-width: 680px) {
+  .layout { padding: 0 16px 32px; }
+  .sidebar .logo { width: 190px; flex-basis: 190px; }
+  .nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 8px; }
+  .nav button { white-space: normal; padding: 10px 6px; min-height: 44px; }
+  .topbar { gap: 8px; padding: 16px 0 20px; }
+  .topbar-right { gap: 4px; }
+  
+  .account-chip { flex: 1; padding: 8px; }
+  .account-label strong { font-size: 11px; }
+  .mobile-logout { padding: 8px 12px; }
+  .page-header, .section-heading { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .page-header > button, .section-heading .field { width: 100%; }
+  .page-header { padding-top: 8px; }
+  h1 { font-size: 22px; }
+  #main, .stack { gap: 20px; }
+  .card { padding: 20px 16px; gap: 16px; }
+}

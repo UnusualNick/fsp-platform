@@ -1,0 +1,69 @@
+button {
+  min-height: 44px; border: 1px solid transparent; border-radius: var(--radius);
+  padding: 10px 16px; background: transparent; color: var(--ink); line-height: 22px;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, opacity 200ms ease;
+}
+button:active { transition: none; }
+.primary { color: #fff; background: var(--accent); border-color: var(--accent); }
+.primary:hover:not(:disabled) { background: var(--accent-dark); border-color: var(--accent-dark); }
+.primary:active:not(:disabled) { background: var(--navy); border-color: var(--navy); }
+.secondary { background: var(--surface); border-color: var(--border); }
+.secondary:hover:not(:disabled) { background: var(--surface-muted); border-color: #b9b5ce; }
+.secondary:active:not(:disabled) { background: #eae7f8; border-color: #a69fd4; }
+.ghost, .tiny-link { color: var(--accent); }
+.ghost:hover:not(:disabled) { background: var(--surface-accent); }
+.danger { color: #c31f35; }
+.danger:hover:not(:disabled) { background: #fff0f2; border-color: #e7acb5; }
+.wide { width: 100%; }
+.field { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.field label { font-size: 12px; color: #494b56; line-height: 18px; }
+input:not([type=checkbox]):not([type=radio]), textarea, select, .select-trigger {
+  width: 100%; min-width: 0; height: 44px; padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  color: var(--ink); background: var(--surface); line-height: 22px;
+}
+input:not([type=checkbox]):not([type=radio]):hover, textarea:hover, .select-trigger:hover:not(:disabled) {
+  border-color: #b9b5ce;
+}
+input:focus-visible, textarea:focus-visible, .select-trigger:focus-visible {
+  border-color: var(--accent); outline: 2px solid #ded9ff; outline-offset: 1px;
+}
+input:disabled, textarea:disabled { color: var(--muted); background: var(--surface-muted); }
+input::placeholder, textarea::placeholder { color: #81828b; opacity: 1; }
+textarea { height: auto; min-height: 100px; resize: vertical; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.full { grid-column: 1 / -1; }
+form { display: flex; flex-direction: column; gap: 20px; }
+.check, .answer { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+.check { color: #494b56; }
+input[type=checkbox], input[type=radio] { width: 18px; height: 18px; margin: 2px 0; flex: 0 0 18px; accent-color: var(--accent); }
+.form-actions, .invitation-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.form-actions { padding-top: 4px; }
+.select-control { position: relative; min-width: 0; }
+.select-trigger { display: flex; align-items: center; justify-content: space-between; gap: 16px; text-align: left; }
+.select-value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chevron { width: 20px; height: 20px; flex: 0 0 20px; transition: transform 300ms var(--ease-layer); }
+.select-trigger[aria-expanded=true] { border-color: var(--accent); }
+.select-trigger[aria-expanded=true] .chevron { transform: rotate(180deg); }
+.select-menu {
+  position: fixed; inset: auto; margin: 0; padding: 6px; border: 1px solid #e4e1ed;
+  border-radius: 8px; background: #fff; color: var(--ink); overflow: auto;
+  box-shadow: 0 8px 32px #1c104b26, 0 2px 6px #1c104b0d; z-index: 100;
+}
+.select-menu::backdrop { background: transparent; }
+.select-option {
+  min-height: 40px; display: flex; align-items: center; gap: 12px; padding: 9px 12px;
+  border-radius: 4px; cursor: pointer; line-height: 22px; overflow-wrap: normal;
+}
+.select-option[data-active=true] { background: var(--surface-accent); color: var(--accent); }
+.select-option[aria-selected=true] { color: var(--accent); }
+.select-option[aria-disabled=true] { opacity: .4; cursor: default; }
+.select-option svg { width: 18px; height: 18px; margin-left: auto; flex: 0 0 18px; visibility: hidden; }
+.select-option[aria-selected=true] svg { visibility: visible; }
+@media (max-width: 600px) {
+  .form-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .form-actions, .invitation-actions { align-items: stretch; }
+  .form-actions > button, .invitation-actions > button { flex: 1 1 180px; }
+}
+
+.option-label { min-width: 0; flex: 1; }

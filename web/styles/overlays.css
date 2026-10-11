@@ -1,0 +1,14 @@
+dialog { width: min(640px, calc(100vw - 32px)); max-height: calc(100dvh - 48px); padding: 0; border: 1px solid var(--border); border-radius: 10px; color: var(--ink); background: #fff; box-shadow: 0 20px 80px #14064f33; }
+dialog::backdrop { background: #13102266; }
+#modal-content { padding: 28px; display: flex; flex-direction: column; gap: 20px; }
+#modal-content > button { align-self: flex-start; }
+.modal-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.modal-head h2 { font-size: 20px; padding-top: 5px; }
+.close { display: grid; place-items: center; width: 36px; height: 36px; min-height: 36px; padding: 0; font-size: 26px; line-height: 1; flex-shrink: 0; color: var(--muted); }
+.close:hover { background: var(--surface-muted); }
+#toast { display: none; position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); width: max-content; max-width: min(560px, calc(100vw - 32px)); border-radius: 8px; background: #292534; color: white; padding: 14px 20px; box-shadow: 0 4px 24px #14064f26; z-index: 200; font-size: 12px; }
+@media (max-width: 600px) {
+  #modal-content { padding: 20px; gap: 20px; }
+  .modal-head h2 { font-size: 17px; }
+  #modal-content > button { width: 100%; }
+}
