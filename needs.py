@@ -23,4 +23,4 @@ def parse_need(value):
  grades=[g for g,terms in {'Junior':('junior','джуниор','джун'), 'Middle':('middle','мидл','миддл'), 'Senior':('senior','сеньор','синьор')}.items() if any(mentioned(value,t) for t in terms)]
  categories=[{'specialization':s,'grade':grades[0] if len(grades)==1 else None} for s,n in sorted(scores.items(),key=lambda x:-x[1]) if n]
  return {'skills':', '.join(skills),'categories':categories,'grade':grades[0] if len(grades)==1 else None,
- 'message':'Проверьте распознанные требования перед поиском. Неизвестные технологии добавьте вручную.'}
+ 'message':'Проверьте требования перед поиском. Нераспознанные технологии добавьте вручную'}

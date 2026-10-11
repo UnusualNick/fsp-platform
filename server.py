@@ -53,7 +53,7 @@ class Handler(BaseHTTPRequestHandler):
   with self.server.rate_lock:
    events=self.server.rates[key]
    while events and events[0]<now-60:events.popleft()
-   if len(events)>=20:raise ApiError(429,'Слишком много запросов. Повторите через минуту.')
+   if len(events)>=20:raise ApiError(429,'Слишком много запросов. Повторите через минуту')
    events.append(now)
  def do_GET(self):self.handle_request('GET')
  def do_POST(self):self.handle_request('POST')
@@ -128,10 +128,10 @@ class Handler(BaseHTTPRequestHandler):
   if 'ProfileFont' not in pdfmetrics.getRegisteredFontNames():pdfmetrics.registerFont(TTFont('ProfileFont',str(font)))
   p=me['profile'];buffer=io.BytesIO();cv=canvas.Canvas(buffer);cv.setFont('ProfileFont',20);y=790
   import textwrap
-  lines=['ФСП / Профиль кандидата',p['name'],SPECIALIZATIONS.get(p['specialization'],''),p['grade'] or 'Категория ещё не подтверждена',f'Результат теста: {p["score"]}%',f'Стек: {p["skills"]}',f'Email: {me["user"]["email"]}',f'Контакт: {p["contact"]}',p['about'],'Достижения ФСП:']+[f'{a["event"]}, место {a["place"]}.' for a in p['achievements']]
-  if me.get('demo'):lines.append('Учебный профиль. Данные реестра ФСП воспроизведены для демонстрации.')
-  lines.append('Членство в ФСП не учитывается в подборе.')
-  if not p['achievements']:lines.append('История ФСП отсутствует. Это не блокирует подбор.')
+  lines=['ФСП / Профиль кандидата',p['name'],SPECIALIZATIONS.get(p['specialization'],''),p['grade'] or 'Категория ещё не подтверждена',f'Результат теста: {p["score"]}%',f'Стек: {p["skills"]}',f'Email: {me["user"]["email"]}',f'Контакт: {p["contact"]}',p['about'],'Достижения ФСП:']+[f'{a["event"]}, место {a["place"]}' for a in p['achievements']]
+  if me.get('demo'):lines.append('Учебный профиль. Данные реестра ФСП воспроизведены для демонстрации')
+  lines.append('Членство в ФСП не учитывается в подборе')
+  if not p['achievements']:lines.append('Достижений ФСП нет. Для подбора они необязательны')
   for i,line in enumerate(lines):
    cv.setFont('ProfileFont',18 if i<2 else 11)
    for fragment in textwrap.wrap(line,75) or ['']:

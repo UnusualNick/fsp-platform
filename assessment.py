@@ -68,28 +68,28 @@ def generate(spec, grade, seed=None):
    if variant % 2 == 0:
     overhead = depth*7
     correct = ((a+b-1)//b)*c+overhead
-    add(f'Сервис обрабатывает {a} независимых запросов. Одновременно выполняются {b}, каждый длится {c} мс. Все запросы готовы в момент 0, следующий пакет стартует после завершения предыдущего. Финальная фиксация занимает ещё {overhead} мс. Через сколько мс завершится весь пакет?', correct, [correct-c, correct+c, a*c+overhead], 'concurrency')
+    add(f'Число независимых запросов к сервису: {a}. Одновременно выполняются {b}, каждый длится {c} мс. Все запросы готовы в момент 0, следующий пакет стартует после завершения предыдущего. Финальная фиксация занимает ещё {overhead} мс. Через сколько мс завершится весь пакет?', correct, [correct-c, correct+c, a*c+overhead], 'concurrency')
    else:
     duplicates = b*depth
-    add(f'В БД {a} заказов. В обработчик поступило {b+c} уникальных новых id и {duplicates} повторных id существующих заказов. INSERT использует UNIQUE(order_id) ON CONFLICT DO NOTHING. Сколько заказов станет в БД?', a+b+c, [a+b+c+duplicates,a,a+b+c-1], 'idempotency')
+    add(f'Число заказов в БД: {a}. Обработчик получил уникальные новые id ({b+c}) и повторные id существующих заказов ({duplicates}). INSERT использует UNIQUE(order_id) ON CONFLICT DO NOTHING. Сколько заказов станет в БД?', a+b+c, [a+b+c+duplicates,a,a+b+c-1], 'idempotency')
   elif spec == 'frontend':
    if variant % 2 == 0:
     gap = depth*8
     correct = b*c+(b-1)*gap
-    add(f'В CSS Grid {b} колонок шириной {c*10}px с gap {gap}px. Какова общая ширина сетки без padding и border?', b*c*10+(b-1)*gap, [b*c*10+b*gap,b*c*10,b*c*10+(b+1)*gap], 'layout')
+    add(f'Число колонок CSS Grid: {b}, ширина каждой: {c*10}px, gap: {gap}px. Какова общая ширина сетки без padding и border?', b*c*10+(b-1)*gap, [b*c*10+b*gap,b*c*10,b*c*10+(b+1)*gap], 'layout')
    else:
     # Explicit recurrence avoids framework-dependent batching assumptions.
-    add(f'Редьюсер начинает со state={a}. Он последовательно применяет {b} действий add({c}), затем одно multiply({depth+1}). Каков итоговый state? Каждое действие работает с результатом предыдущего.', (a+b*c)*(depth+1), [a+b*c*(depth+1),(a+c)*(depth+1),(a+b*c)*(depth+1)+c], 'state')
+    add(f'Редьюсер начинает со state={a}. Он применяет последовательность из {b} действий add({c}), затем одно multiply({depth+1}). Каков итоговый state? Каждое действие работает с результатом предыдущего', (a+b*c)*(depth+1), [a+b*c*(depth+1),(a+c)*(depth+1),(a+b*c)*(depth+1)+c], 'state')
   else:
    if variant % 2 == 0:
-    add(f'Таблица A содержит {a} уникальных ключей. Для {b} из них в B есть по {c} строк, для остальных совпадений нет. Сколько строк вернёт A LEFT JOIN B по ключу?', a-b+b*c, [a+b*c,b*c,a], 'sql')
+    add(f'Число уникальных ключей в таблице A: {a}. Для {b} ключей число строк в B на каждый ключ: {c}, для остальных совпадений нет. Сколько строк вернёт A LEFT JOIN B по ключу?', a-b+b*c, [a+b*c,b*c,a], 'sql')
    else:
     positives=a; true_pos=b*depth; false_pos=c*depth
     correct=round(true_pos/(true_pos+false_pos)*100,1)
     distract=[round(true_pos/positives*100,1), round(false_pos/(true_pos+false_pos)*100,1),100.0]
     # Very rare coincident fractions: use fixed numeric offsets instead.
     if len(set([correct]+distract))<4: distract=[round(correct+1.3,1),round(correct+2.7,1),round(correct+4.1,1)]
-    add(f'Классификатор дал TP={true_pos}, FP={false_pos}; всего в выборке {positives} положительных объектов. Чему равна precision в процентах? Округлите до одного знака.', correct,distract,'metrics')
+    add(f'Классификатор дал TP={true_pos}, FP={false_pos}; число положительных объектов в выборке: {positives}. Чему равна precision в процентах? Округлите до одного знака', correct,distract,'metrics')
  # Fixed competency coverage; alternate scenario within each family.
  # Appended after the legacy six items so existing active forms remain untouched.
  for skill, variants in CORE[spec].items():

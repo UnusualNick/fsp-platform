@@ -59,19 +59,19 @@ class Service:
     if not self.demo:self.send_verification(email,token)
   except sqlite3.IntegrityError:raise ApiError(409,'Аккаунт с этой почтой уже существует')
   result={'message':'Подтвердите адрес по ссылке в письме','demo':self.demo}
-  if self.demo:result['verification_token']=token;result['message']='Подтвердите email кнопкой ниже.'
+  if self.demo:result['verification_token']=token;result['message']='Подтвердите email кнопкой ниже'
   return result
  def send_verification(self,email,token):
   host=os.environ.get('SMTP_HOST');base=os.environ.get('PUBLIC_URL');sender=os.environ.get('SMTP_FROM')
   if not host or not base or not sender:raise ApiError(503,'SMTP и PUBLIC_URL должны быть настроены')
-  msg=EmailMessage();msg['Subject']='Подтверждение email — ФСП / ИТ-подбор';msg['From']=sender;msg['To']=email
+  msg=EmailMessage();msg['Subject']='Подтверждение email: ФСП / ИТ-подбор';msg['From']=sender;msg['To']=email
   msg.set_content(f'Подтвердите адрес в течение часа: {base}/?verify={token}')
   try:
    with smtplib.SMTP(host,int(os.environ.get('SMTP_PORT','587')),timeout=10) as smtp:
     smtp.starttls()
     if os.environ.get('SMTP_USER'):smtp.login(os.environ['SMTP_USER'],os.environ['SMTP_PASSWORD'])
     smtp.send_message(msg)
-  except (OSError,smtplib.SMTPException):raise ApiError(503,'Не удалось отправить письмо. Повторите регистрацию позже.')
+  except (OSError,smtplib.SMTPException):raise ApiError(503,'Не удалось отправить письмо. Повторите регистрацию позже')
  def verify(self,d):
   token=text(d,'token',100,True)
   with self.store.connect() as c:
@@ -79,7 +79,7 @@ class Service:
    if not row:raise ApiError(400,'Ссылка недействительна или истекла')
    c.execute('UPDATE users SET verified=1 WHERE id=?',(row['user_id'],));c.execute('DELETE FROM verifications WHERE user_id=?',(row['user_id'],))
    self.audit(c,row['user_id'],'email.verified')
-  return {'message':'Email подтверждён. Войдите в аккаунт.'}
+  return {'message':'Email подтверждён. Войдите в аккаунт'}
  def login(self,d):
   email=text(d,'email',254,True).lower();password=text(d,'password',128,True)
   with self.store.connect() as c:
@@ -123,7 +123,7 @@ class Service:
    if p['grade_changed'] and now-p['grade_changed']<90*DAY:
     raise ApiError(409,'Подтверждённую категорию можно менять раз в 90 дней')
    active=c.execute('SELECT * FROM attempts WHERE user_id=? AND completed IS NULL AND expires>?',(u['id'],now)).fetchone()
-   if active:raise ApiError(409,'Уже есть активный тест. Завершите его или дождитесь окончания 20 минут.')
+   if active:raise ApiError(409,'Есть активный тест. Завершите его или дождитесь окончания 20 минут')
    count=c.execute('SELECT COUNT(*) FROM attempts WHERE user_id=? AND created>?',(u['id'],now-DAY)).fetchone()[0]
    if count>=3:raise ApiError(429,'Не более трёх тестов в сутки')
    form=generate(spec,grade);aid=secrets.token_urlsafe(18)

@@ -89,3 +89,27 @@ main > .card + .card { margin-top: 20px; }
 }
 
 .invitation-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Keep related controls together and separate adjacent content groups. */
+form:not(#auth-form) > .field + .field { margin-top: 16px; }
+.field + p, .form-grid + p { margin-top: 8px; }
+.list-card > .tags { margin-bottom: 12px; }
+#modal-content > .tags + h3 { margin-top: 20px; }
+#modal-content > :last-child { margin-bottom: 0; }
+.modal-head { align-items: flex-start; }
+.modal-head h2 { min-width: 0; overflow-wrap: anywhere; }
+.modal-head .close { flex-shrink: 0; }
+#modal-content > p { overflow-wrap: anywhere; }
+.history details { margin-top: 8px; }
+.history details p { margin-top: 12px; }
+#need-preview { display: flex; flex-wrap: wrap; gap: 8px; }
+#need-preview:not(:empty) { margin-top: 16px; }
+#need-preview > p { flex-basis: 100%; margin: 0; }
+.applied-filters span { overflow-wrap: anywhere; min-width: 0; }
+
+@media (max-width: 680px) {
+  .card-footer > *, .form-actions > *, .invitation-actions { max-width: 100%; }
+  .form-actions > button, .invitation-actions > button { width: 100%; }
+  .modal-head { gap: 12px; }
+}
+#toast { width: max-content; overflow-wrap: anywhere; }

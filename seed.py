@@ -15,7 +15,7 @@ def seed(store):
    uid=c.execute('INSERT INTO users(email,password,role,verified,created,consent_at) VALUES(?,?,?,?,?,?)',(email,hash_password(DEMO_PASSWORD),role,1,now,now)).lastrowid
    return uid
   employer=user('employer@example.test','employer')
-  c.execute('INSERT INTO companies VALUES(?,?,?,?)',(employer,'Орбита Технологии','Разрабатываем инструменты для разработчиков.','talent@orbita.example.test'))
+  c.execute('INSERT INTO companies VALUES(?,?,?,?)',(employer,'Орбита Технологии','Создаём инструменты для разработчиков','talent@orbita.example.test'))
   dataset=[]
   for si,(spec,label) in enumerate(SPECIALIZATIONS.items()):
    for gi,grade in enumerate(GRADES):
@@ -28,10 +28,10 @@ def seed(store):
      # Seed results are scenario fixtures, not actual completed assessments.
      score=[100,83.3,100,100][j] if grade!='Senior' else 100
      skills=STACKS[spec][j]
-     c.execute('INSERT INTO profiles(user_id,name,skills,about,contact,specialization,grade,claimed_grade,score,published,fsp_id,achievements,grade_changed) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',(uid,name,skills,f'{label}. Работаю с командой над сервисами и внутренними инструментами.',f'@demo_candidate_{ix+1}',spec,grade,grade,score,1,fsp_id,json.dumps(ach,ensure_ascii=False),now-91*86400))
+     c.execute('INSERT INTO profiles(user_id,name,skills,about,contact,specialization,grade,claimed_grade,score,published,fsp_id,achievements,grade_changed) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',(uid,name,skills,f'{label}. Работаю в команде над сервисами и внутренними инструментами',f'@demo_candidate_{ix+1}',spec,grade,grade,score,1,fsp_id,json.dumps(ach,ensure_ascii=False),now-91*86400))
      dataset.append({'synthetic':True,'id':uid,'name':name,'specialization':spec,'grade':grade,'skills':skills,'score':score,'fsp_achievement_count':len(ach)})
   for spec,grade,title,skills,lo,hi in [('backend','Middle','Backend-разработчик платформы','Python, PostgreSQL',180000,260000),('frontend','Middle','Frontend-разработчик продукта','TypeScript, React',170000,240000),('data','Junior','Аналитик продуктовой команды','Python, SQL',90000,140000)]:
-   c.execute('INSERT INTO vacancies(employer_id,title,description,specialization,grade,skills,salary_min,salary_max,created) VALUES(?,?,?,?,?,?,?,?,?)',(employer,title,'Разрабатываем веб-сервис. Удалённая работа, задачи и условия обсудим на собеседовании.',spec,grade,skills,lo,hi,now))
+   c.execute('INSERT INTO vacancies(employer_id,title,description,specialization,grade,skills,salary_min,salary_max,created) VALUES(?,?,?,?,?,?,?,?,?)',(employer,title,'Разрабатываем веб-сервис удалённо. Задачи и условия обсудим на собеседовании',spec,grade,skills,lo,hi,now))
   profile=c.execute("SELECT user_id FROM profiles JOIN users ON users.id=profiles.user_id WHERE email='candidate@example.test'").fetchone()
-  c.execute('INSERT INTO invitations(employer_id,candidate_id,title,description,salary_min,salary_max,created,updated,company_name,company_contact) VALUES(?,?,?,?,?,?,?,?,?,?)',(employer,profile['user_id'],'Разработчик Backend','Ваш подтверждённый профиль подходит нашей команде. Предлагаем обсудить продукт и условия.',180000,260000,now,now,'Орбита Технологии','talent@orbita.example.test'))
+  c.execute('INSERT INTO invitations(employer_id,candidate_id,title,description,salary_min,salary_max,created,updated,company_name,company_contact) VALUES(?,?,?,?,?,?,?,?,?,?)',(employer,profile['user_id'],'Разработчик Backend','Ваш подтверждённый профиль подходит команде. Предлагаем обсудить продукт и условия',180000,260000,now,now,'Орбита Технологии','talent@orbita.example.test'))
  return dataset
